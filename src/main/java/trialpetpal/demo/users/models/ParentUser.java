@@ -19,9 +19,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class ParentUser {
 
-  public ParentUser(@NotBlank String name) {
-    this.name = name;
-  }
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -27,9 +27,10 @@ public class UserController {
   }
 
   @PostMapping("/register/user")
-  public ResponseEntity registerUser(@Valid @RequestBody PrivateUser privateUser) throws UserIsNullException, EmailTakenException, UnirestException {
+  public ResponseEntity registerUser(@Valid @RequestBody PrivateUserDTO privateUserDTO) throws UserIsNullException, EmailTakenException, UnirestException {
+    PrivateUser privateUser = modelMapper.map(privateUserDTO, PrivateUser.class);
     parentUserService.register(privateUser);
-    return ResponseEntity.ok(modelMapper.map(privateUser, UserDTO.class));
+    return ResponseEntity.ok(privateUserDTO.getEmail());
   }
 
   @PostMapping("/register/organization")
