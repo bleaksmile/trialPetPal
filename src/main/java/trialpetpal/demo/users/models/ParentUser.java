@@ -33,9 +33,9 @@ public abstract class ParentUser {
   private String imageUrl;
 
 
-  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+/*  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinColumn(name = "geo_code_id")
-  private GeoCode geoCode;
+  private GeoCode geoCode;*/
   private String address;
 //  TODO address fields
 

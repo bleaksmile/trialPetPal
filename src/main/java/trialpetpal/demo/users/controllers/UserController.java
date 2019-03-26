@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class UserController {
 
   private ParentUserService parentUserService;
-  private ModelMapper modelMapper;
+  private ModelMapper modelMapper = new ModelMapper();
 
   @Autowired
   public UserController(ParentUserService userDetailsService) {
@@ -39,11 +39,11 @@ public class UserController {
     return ResponseEntity.ok().body(modelMapper.map(organisation,UserDTO.class));
   }
 
-  @PostMapping("/oauth2/authorize/google")
+/*  @PostMapping("/oauth2/authorize/google")
   public ResponseEntity loginGoogleUser(GoogleUser googleUser) throws UserNotFoundException {
     String token = parentUserService.login(googleUser);
     return ResponseEntity.ok().body(token);
-  }
+  }*/
 
   @PostMapping("/login/user")
   public ResponseEntity loginPrivateUser(@Valid @RequestBody PrivateUser privateUser ) throws UserNotFoundException {
