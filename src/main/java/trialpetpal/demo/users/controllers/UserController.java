@@ -8,8 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import trialpetpal.demo.exception.EmailTakenException;
 import trialpetpal.demo.exception.UserIsNullException;
-import trialpetpal.demo.exception.UserNotFoundException;
+import trialpetpal.demo.oauthSecurity.Token;
 import trialpetpal.demo.users.models.*;
+import trialpetpal.demo.users.models.dtos.LoginUserDTO;
+import trialpetpal.demo.users.models.dtos.RegisterUserDTO;
+import trialpetpal.demo.users.models.dtos.UserDTO;
 import trialpetpal.demo.users.services.ParentUserService;
 
 import javax.validation.Valid;
@@ -27,16 +30,16 @@ public class UserController {
   }
 
   @PostMapping("/register/user")
-  public ResponseEntity registerUser(@Valid @RequestBody PrivateUserDTO privateUserDTO) throws UserIsNullException, EmailTakenException, UnirestException {
-   PrivateUser privateUser = modelMapper.map(privateUserDTO, PrivateUser.class);
+  public ResponseEntity registerUser(@Valid @RequestBody RegisterUserDTO registerUserDTO) throws UserIsNullException, EmailTakenException, UnirestException {
+   PrivateUser privateUser = modelMapper.map(registerUserDTO, PrivateUser.class);
    parentUserService.register(privateUser);
-    return ResponseEntity.ok(privateUserDTO.getEmail());
+    return ResponseEntity.ok(registerUserDTO.getEmail());
   }
 
   @PostMapping("/register/organization")
   public ResponseEntity registerOrganisation(@Valid @RequestBody Organisation organisation) throws UserIsNullException, UnirestException, EmailTakenException {
     parentUserService.register(organisation);
-    return ResponseEntity.ok().body(modelMapper.map(organisation,UserDTO.class));
+    return ResponseEntity.ok().body(modelMapper.map(organisation, UserDTO.class));
   }
 
 /*  @PostMapping("/oauth2/authorize/google")
@@ -46,8 +49,9 @@ public class UserController {
   }*/
 
   @PostMapping("/login/user")
-  public ResponseEntity loginPrivateUser(@Valid @RequestBody PrivateUser privateUser ) throws UserNotFoundException {
-    String token = parentUserService.login(privateUser);
+  public ResponseEntity loginPrivateUser(@Valid @RequestBody LoginUserDTO loginUserDTO ) throws Throwable {
+    PrivateUser privateUser = (PrivateUser) parentUserService.findByEmail(loginUserDTO.getEmail());
+    Token token = new Token(parentUserService.login(privateUser));
     return ResponseEntity.ok().body(token);
   }
 

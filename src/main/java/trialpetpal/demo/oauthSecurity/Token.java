@@ -1,15 +1,14 @@
-package trialpetpal.demo.users.models;
-
+package trialpetpal.demo.oauthSecurity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-public class UserDTO {
-    private String email;
+@AllArgsConstructor
+public class Token {
+  private String token;
 }
