@@ -46,8 +46,8 @@ public class PrivateUserServiceImpl extends ParentUserService<PrivateUser> {
   public PrivateUser register(PrivateUser privateUser) throws EmailTakenException, UnirestException {
     if (!isEmailInDB(privateUser)) {
       privateUser.setPassword(encoder.encode(privateUser.getPassword()));
-      GeoCode geoCode = locationService.generateUserLocationFromAddress(privateUser);
-      privateUser.setGeoCode(geoCode);
+   //   GeoCode geoCode = locationService.generateUserLocationFromAddress(privateUser);
+    //  privateUser.setGeoCode(geoCode);
       return saveUser(privateUser);
     }
     throw new EmailTakenException("Email address already taken, please choose an other one or sign in.");
