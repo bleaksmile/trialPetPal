@@ -1,4 +1,4 @@
-const host = 'https://trialpetpal.herokuapp.com/';
+const host = 'https://trialpetpal.herokuapp.com';
 
 export default (url, method, token, data) => {
   const options = {
