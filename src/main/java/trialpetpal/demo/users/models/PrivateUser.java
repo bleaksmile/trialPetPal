@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class PrivateUser extends ParentUser {
 
+
   @NotBlank
   private String password;
 

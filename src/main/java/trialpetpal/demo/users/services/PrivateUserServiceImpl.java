@@ -44,7 +44,6 @@ public class PrivateUserServiceImpl extends ParentUserService<PrivateUser> {
 
   @Override
   public PrivateUser register(PrivateUser privateUser) throws EmailTakenException, UnirestException {
-
     if (!isEmailInDB(privateUser)) {
       privateUser.setPassword(encoder.encode(privateUser.getPassword()));
       GeoCode geoCode = locationService.generateUserLocationFromAddress(privateUser);
