@@ -1,4 +1,4 @@
-package trialpetpal.demo.users.models;
+package trialpetpal.demo.users.models.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrivateUserDTO {
+public class RegisterUserDTO {
   @NotBlank
   private String name;
   private String email;
