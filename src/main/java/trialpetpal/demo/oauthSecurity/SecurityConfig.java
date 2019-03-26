@@ -54,8 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Appl
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().
-                antMatchers("/", "/login/user","register/user", "/webjars/**","/bundle.js", "/.ico","/assets/*,").permitAll()
+        http    .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/login/**","register/user", "/webjars/**","/bundle.js", "/favicon.ico","/assets/**,").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
