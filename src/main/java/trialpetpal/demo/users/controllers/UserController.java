@@ -28,8 +28,8 @@ public class UserController {
 
   @PostMapping("/register/user")
   public ResponseEntity registerUser(@Valid @RequestBody PrivateUserDTO privateUserDTO) throws UserIsNullException, EmailTakenException, UnirestException {
-    PrivateUser privateUser = modelMapper.map(privateUserDTO, PrivateUser.class);
-    parentUserService.register(privateUser);
+   PrivateUser privateUser = modelMapper.map(privateUserDTO, PrivateUser.class);
+   parentUserService.register(privateUser);
     return ResponseEntity.ok(privateUserDTO.getEmail());
   }
 
