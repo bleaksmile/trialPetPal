@@ -1,4 +1,4 @@
-const host = 'https://trialpetpal.herokuapp.com';
+const host = 'http://localhost:8080';
 
 export default (url, method, token, data) => {
   const options = {
@@ -14,5 +14,7 @@ export default (url, method, token, data) => {
   if (data && method !== 'GET' && url !== '/pets') options.body = JSON.stringify(data);
   if (data && url === '/pets' && method === 'POST') options.body = data;
 
-  return fetch(`${host}${url}`, options).then(data => data.json());
+  return fetch(`${host}${url}`, options).then(data =>
+      data.json()
+  );
 };
