@@ -16,11 +16,6 @@ const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle, history }
     }
   };
 
-  const handleGoogleLogin = () => {
-    // loginWithGoogle();
-    // history.push('/oauth2/authorize/google');
-  };
-
   return (
     <Fragment>
       <NavbarCont />
@@ -40,7 +35,7 @@ const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle, history }
           </div>
           <div className="googleconnect">
             <p>or</p>
-            <a href="/oauth2/authorize/google" className="googlesigninbtn" onClick={handleGoogleLogin}>
+            <a href="https://trialpetpal.herokuapp.com/oauth2/authorize/google" className="googlesigninbtn">
               <i className="fab fa-google-plus-g" />
               <span>connect with Google</span>
             </a>
