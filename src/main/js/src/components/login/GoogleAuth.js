@@ -5,8 +5,8 @@ import qs from 'query-string';
 const GoogleAuth = ({ location, history }) => {
   useEffect(() => {
     const queries = qs.parse(location.search);
-    console.log(queries.googleauth);
-    localStorage.setItem('accesstoken', queries.googleauth);
+    console.log(queries.auth_token);
+    localStorage.setItem('accesstoken', queries.auth_token);
     if (localStorage.getItem('accesstoken')) {
       history.push('/home/find');
     } else {
