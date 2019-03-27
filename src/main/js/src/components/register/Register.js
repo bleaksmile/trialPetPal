@@ -36,7 +36,7 @@ const Register = ({ requestRegister, setRegisterError, registerErrorMsg }) => {
       {registerErrorMsg ? <h3>{registerErrorMsg}</h3> : null}
       <div>
         <input className="input" name="registername" type="text" id="registername" />
-        <label htmlFor="registername">username</label>
+        <label htmlFor="registername">full name</label>
       </div>
       <div>
         <input className="input" name="registeremail" type="text" id="registeremail" />

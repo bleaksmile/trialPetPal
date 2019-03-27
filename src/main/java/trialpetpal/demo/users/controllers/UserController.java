@@ -8,8 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import trialpetpal.demo.exception.EmailTakenException;
 import trialpetpal.demo.exception.UserIsNullException;
-import trialpetpal.demo.exception.UserNotFoundException;
+import trialpetpal.demo.oauthSecurity.Token;
 import trialpetpal.demo.users.models.*;
+import trialpetpal.demo.users.models.dtos.LoginUserDTO;
+import trialpetpal.demo.users.models.dtos.RegisterUserDTO;
+import trialpetpal.demo.users.models.dtos.UserDTO;
 import trialpetpal.demo.users.services.ParentUserService;
 
 import javax.validation.Valid;
@@ -19,7 +22,7 @@ import javax.validation.Valid;
 public class UserController {
 
   private ParentUserService parentUserService;
-  private ModelMapper modelMapper;
+  private ModelMapper modelMapper = new ModelMapper();
 
   @Autowired
   public UserController(ParentUserService userDetailsService) {
@@ -27,26 +30,34 @@ public class UserController {
   }
 
   @PostMapping("/register/user")
-  public ResponseEntity registerUser(@Valid @RequestBody PrivateUser privateUser) throws UserIsNullException, EmailTakenException, UnirestException {
-    parentUserService.register(privateUser);
-    return ResponseEntity.ok(modelMapper.map(privateUser, UserDTO.class));
+  public ResponseEntity registerUser(@Valid @RequestBody RegisterUserDTO registerUserDTO) throws UserIsNullException, EmailTakenException, UnirestException {
+   PrivateUser privateUser = modelMapper.map(registerUserDTO, PrivateUser.class);
+   parentUserService.register(privateUser);
+    return ResponseEntity.ok(registerUserDTO.getEmail());
   }
+
+/*  @GetMapping("/testtoken")
+  public ResponseEntity testToken(Authentication authentication){
+    String token =
+    return ResponseEntity.ok(authentication.getPrincipal());
+  }*/
 
   @PostMapping("/register/organization")
   public ResponseEntity registerOrganisation(@Valid @RequestBody Organisation organisation) throws UserIsNullException, UnirestException, EmailTakenException {
     parentUserService.register(organisation);
-    return ResponseEntity.ok().body(modelMapper.map(organisation,UserDTO.class));
+    return ResponseEntity.ok().body(modelMapper.map(organisation, UserDTO.class));
   }
 
-  @PostMapping("/oauth2/authorize/google")
+/*  @PostMapping("/oauth2/authorize/google")
   public ResponseEntity loginGoogleUser(GoogleUser googleUser) throws UserNotFoundException {
     String token = parentUserService.login(googleUser);
     return ResponseEntity.ok().body(token);
-  }
+  }*/
 
   @PostMapping("/login/user")
-  public ResponseEntity loginPrivateUser(@Valid @RequestBody PrivateUser privateUser ) throws UserNotFoundException {
-    String token = parentUserService.login(privateUser);
+  public ResponseEntity loginPrivateUser(@Valid @RequestBody LoginUserDTO loginUserDTO ) throws Throwable {
+    PrivateUser privateUser = (PrivateUser) parentUserService.findByEmail(loginUserDTO.getEmail());
+    Token token = new Token(parentUserService.login(privateUser));
     return ResponseEntity.ok().body(token);
   }
 

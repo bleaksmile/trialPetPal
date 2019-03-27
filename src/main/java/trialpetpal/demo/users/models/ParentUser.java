@@ -19,9 +19,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class ParentUser {
 
-  public ParentUser(@NotBlank String name) {
-    this.name = name;
-  }
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +33,9 @@ public abstract class ParentUser {
   private String imageUrl;
 
 
-  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+/*  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinColumn(name = "geo_code_id")
-  private GeoCode geoCode;
+  private GeoCode geoCode;*/
   private String address;
 //  TODO address fields
 

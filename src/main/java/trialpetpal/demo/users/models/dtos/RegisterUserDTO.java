@@ -1,23 +1,19 @@
-package trialpetpal.demo.users.models;
+package trialpetpal.demo.users.models.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Entity(name = "PrivateUser")
-@DiscriminatorValue("PrivateUser")
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrivateUser extends ParentUser {
-
-
+public class RegisterUserDTO {
   @NotBlank
+  private String name;
+  private String email;
   private String password;
-
 }

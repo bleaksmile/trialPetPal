@@ -20,7 +20,7 @@ public class GeoCode {
   private Double lng;
   private Double lat;
 
-  @OneToOne(mappedBy = "geoCode", cascade = CascadeType.PERSIST)
+ /* @OneToOne(mappedBy = "geoCode", cascade = CascadeType.PERSIST)
   @JsonIgnore
-  private ParentUser parentUser;
+  private ParentUser parentUser;*/
 }
