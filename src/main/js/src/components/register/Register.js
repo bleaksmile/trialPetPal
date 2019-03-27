@@ -16,7 +16,7 @@ const Register = ({ requestRegister, setRegisterError, registerErrorMsg }) => {
     if ((registername.value.trim().length > 0 && registerpass.value.trim().length > 0, registeremail.value.trim().length > 0)) {
       if (nameRegex.test(registername.value)) {
         if (emailRegex.test(registeremail.value)) {
-          requestRegister({ username: registername.value, password: registerpass.value, registeremail: registeremail.value });
+          requestRegister({ name: registername.value, password: registerpass.value, email: registeremail.value });
           setRegisterError('');
           event.target.reset();
         } else {
