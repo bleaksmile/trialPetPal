@@ -18,7 +18,7 @@ const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle, history }
 
   const handleGoogleLogin = () => {
     // loginWithGoogle();
-    history.push('/oauth2/authorize/google');
+    // history.push('/oauth2/authorize/google');
   };
 
   return (
@@ -40,10 +40,10 @@ const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle, history }
           </div>
           <div className="googleconnect">
             <p>or</p>
-            <button type="button" className="googlesigninbtn" onClick={handleGoogleLogin}>
+            <a href="/oauth2/authorize/google" className="googlesigninbtn" onClick={handleGoogleLogin}>
               <i className="fab fa-google-plus-g" />
               <span>connect with Google</span>
-            </button>
+            </a>
           </div>
         </div>
       </MainContent>
