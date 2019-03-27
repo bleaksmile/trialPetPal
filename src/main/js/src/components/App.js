@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/googleauth" component={GoogleAuth} />
+      <Route path="/googleauth" component={GoogleAuth} />
       <Route path="/home" component={PrivateRoute(Home)} />
     </Switch>
   );
