@@ -17,7 +17,7 @@ export function* loginRequest(action) {
     } else {
       yield put({
         type: actions.SET_LOGIN_ERROR,
-        message: 'Incorrect username or password!',
+        message: 'Incorrect email or password!',
       });
     }
   } catch (error) {
