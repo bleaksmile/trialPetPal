@@ -8,7 +8,7 @@ import RegisterCont from '../containers/register/RegisterCont';
 import '../stylesheets/landingpage.scss';
 import '../stylesheets/forms.scss';
 
-const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle }) => {
+const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle, history }) => {
   const handleClick = event => {
     const { dataset } = event.target;
     if (dataset.action) {
@@ -17,7 +17,8 @@ const Landingpage = ({ selectedForm, setSelectedForm, loginWithGoogle }) => {
   };
 
   const handleGoogleLogin = () => {
-    loginWithGoogle();
+    // loginWithGoogle();
+    history.push('/oauth2/authorize/google');
   };
 
   return (
