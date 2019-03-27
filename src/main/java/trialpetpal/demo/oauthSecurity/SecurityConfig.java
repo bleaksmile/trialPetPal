@@ -15,10 +15,12 @@ import org.springframework.security.oauth2.client.web.AuthorizationRequestReposi
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import trialpetpal.demo.users.services.ParentUserService;
 
 @Configuration
 @EnableWebSecurity
+@CrossOrigin
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements ApplicationContextAware{
 
     @Autowired
@@ -54,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Appl
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http    .csrf().disable()
+        http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/login/**","/register/**", "/webjars/**","/bundle.js", "/favicon.ico","/assets/**","/oauth2/**").permitAll()
                 .anyRequest().authenticated()
@@ -62,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Appl
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .oauth2Login()
-                .loginProcessingUrl("/oauth2/authorize/google")
+                //.loginProcessingUrl("/oauth2/authorize/google")
                 .redirectionEndpoint()
                 .baseUri("/oauth2/callback/*")
                 .and()
