@@ -36,6 +36,12 @@ public class UserController {
     return ResponseEntity.ok(registerUserDTO.getEmail());
   }
 
+/*  @GetMapping("/testtoken")
+  public ResponseEntity testToken(Authentication authentication){
+    String token =
+    return ResponseEntity.ok(authentication.getPrincipal());
+  }*/
+
   @PostMapping("/register/organization")
   public ResponseEntity registerOrganisation(@Valid @RequestBody Organisation organisation) throws UserIsNullException, UnirestException, EmailTakenException {
     parentUserService.register(organisation);

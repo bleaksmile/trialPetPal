@@ -15,6 +15,8 @@
 
         <mvc:mapping path="/resources/**" allowed-origins="http://localhost:8080" />
         <mvc:mapping path="/oauth2/**" allowed-origins="http://localhost:8080" />
+        <mvc:mapping path="/oauth2/**" allowed-origins="https://accounts.google.com/**" />
+
 
     </mvc:cors>
 
